@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Test login with missing credentials",
+      "method": "POST",
+      "body": {
+        "action": "login",
+        "username": "",
+        "password": ""
+      },
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test OPTIONS request",
+      "method": "OPTIONS",
+      "expectedStatus": 200
+    }
+  ]
+}

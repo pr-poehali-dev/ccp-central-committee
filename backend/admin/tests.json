@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "Test get settings",
+      "method": "GET",
+      "path": "/?entity=settings",
+      "expectedStatus": 200,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test OPTIONS request",
+      "method": "OPTIONS",
+      "expectedStatus": 200
+    }
+  ]
+}

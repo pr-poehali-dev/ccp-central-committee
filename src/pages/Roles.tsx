@@ -34,13 +34,38 @@ const Roles = () => {
     { value: 'cook', label: '👨‍🍳 Повар', category: 'Общественное питание' }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: 'Заявка отправлена!',
-      description: 'Администраторы рассмотрят вашу заявку в ближайшее время.',
-    });
-    setFormData({ name: '', role: '', reason: '' });
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/087f9201-a32d-42f7-a2b3-4173d3035942', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        toast({
+          title: 'Заявка отправлена!',
+          description: 'Администраторы рассмотрят вашу заявку в ближайшее время.',
+        });
+        setFormData({ name: '', role: '', reason: '' });
+      } else {
+        toast({
+          title: 'Ошибка',
+          description: result.error || 'Не удалось отправить заявку',
+          variant: 'destructive'
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось отправить заявку',
+        variant: 'destructive'
+      });
+    }
   };
 
   return (

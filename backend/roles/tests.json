@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Test role request submission",
+      "method": "POST",
+      "body": {
+        "name": "Тестовый гражданин",
+        "role": "builder",
+        "reason": "Хочу помогать строить города"
+      },
+      "expectedStatus": 200,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test OPTIONS request",
+      "method": "OPTIONS",
+      "expectedStatus": 200
+    }
+  ]
+}
